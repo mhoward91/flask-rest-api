@@ -3,7 +3,7 @@ from flask import Flask
 # create an object of Flask, using a unique name
 app = Flask(__name__)
 
-# create an route, for the homepage
+# create a route, for the homepage
 @app.route("/")
 # create a method which returns something, method name not relevant
 def home():

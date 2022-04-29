@@ -48,6 +48,9 @@ def get_store(name):
 def get_stores():
     return jsonify({"stores": stores})
 
+# to test these post requests in Postman:
+# add {Content-Type: application/json} to Params
+# in the Body, select raw, and add a dict of variables required
 @app.route("/store/<string:name>/item", methods=["POST"])
 def create_items_in_store(name):
     request_data = request.get_json()
