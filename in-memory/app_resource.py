@@ -13,7 +13,7 @@
 # it returns a jwt token which calls the identity function 
 # which uses the jwt token to get the user ID, and subsequently the correct user 
 
-from flask import Flask, request
+from flask import Flask, request # type: ignore
 from flask_restful import Resource, Api, reqparse # type: ignore
 from flask_jwt import JWT, jwt_required # type: ignore
 
