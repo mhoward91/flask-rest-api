@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
 
-# note you would normally store this info in a database (not a dict in mem)
+# normally store below info in a database, not in memory
 stores = [
     {
        "name": "My Wonderful Store",
@@ -16,27 +16,25 @@ stores = [
     }
 ]
 
-# render HTML code from flask application (illustrative only)
-# you would only do this for flask web apps, not for flask APIs
+# for flask web apps (not APIs), render HTML code from flask application
 @app.route("/")
 def home():
-    return render_template("index.html") # flask auto looks in templates folder
+    return render_template("index2.html") # flask auto looks in templates folder
 
 
-# flask notation to illustrate the available verbs in a list (GET, POST etc)
-# default is a GET request
-# methods will always need to return jsonify(dict)
+# GET request acts as default if type not specified
+# methods must return jsonify(dict)
 @app.route("/store", methods=["POST"])
 def create_store():
-    request_data = request.get_json()   # request holds an active request's data
+    request_data = request.get_json()   # request holds an active request's body data
     new_store = {
         "name": request_data["name"],
         "items": []
     }
     stores.append(new_store)
-    return jsonify(new_store)   # use jsonify as always need to return a STR
+    return jsonify(new_store)   # use jsonify as always need to return a string
 
-# flask notation of <string:name> to pass parameter name to the method
+# use flask notation of <string:name> to pass parameter <name> to the method
 @app.route("/store/<string:name>")
 def get_store(name):
     for store in stores:
@@ -48,9 +46,6 @@ def get_store(name):
 def get_stores():
     return jsonify({"stores": stores})
 
-# to test these post requests in Postman:
-# add {Content-Type: application/json} to Params
-# in the Body, select raw, and add a dict of variables required
 @app.route("/store/<string:name>/item", methods=["POST"])
 def create_items_in_store(name):
     request_data = request.get_json()
@@ -73,3 +68,7 @@ def get_items_in_store(name):
 
 
 app.run(port=5000)
+
+# testing requests in Postman:
+# for non GET methods add {Content-Type: application/json} to request header
+# in body, select raw, and add a dict of required variables

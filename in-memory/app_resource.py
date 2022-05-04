@@ -1,17 +1,12 @@
-# REST APIs work with Resources - data returned from endpoints
-# every resource needs to be a class, inheriting from resource
-# every method in a resource must use the same params (defined when res. added)
-# methods must return a dict but don't require jsonify
-# get_json() retrieves request request body (json payload) as a python dict for use
+# RESTful APIs work with Resources - data returned from endpoints
+# every resource needs to be a class, inheriting from base class Resource
+# every method in a resource must use the same params (defined when resource added)
+# methods must return a dict but don't require to be wrapped in jsonify with flask_restful
+# @app.route decorator not required with flask_restful
+
+# get_json() retrieves request the request body (json payload) as a python dict for use
 # optional params: force=True will ignore header & parse as json
 # silent=True will return None if error 
-# # @app.route decorator not required with flask_restful
-
-# JWT extension creates a new "/auth" endpoint
-# /auth is sent a username & password, which JWT extension sends to authenticate func.
-# authenticate function retrieves object & compares password
-# it returns a jwt token which calls the identity function 
-# which uses the jwt token to get the user ID, and subsequently the correct user 
 
 from flask import Flask, request # type: ignore
 from flask_restful import Resource, Api, reqparse # type: ignore
@@ -20,7 +15,7 @@ from flask_jwt import JWT, jwt_required # type: ignore
 from security import authenticate, identity
 
 app = Flask(__name__)
-app.secret_key = "matt" # delete/hide this for production
+app.secret_key = "matt"  # hide in a production environment
 api = Api(app)
 
 jwt = JWT(app, authenticate, identity)  
@@ -38,7 +33,7 @@ class Item(Resource):
         help="This field cannot be left blank!"
         )
 
-    @jwt_required()   # this means authentication required prior to use of method
+    @jwt_required()   # authentication required prior to use of method
     def get(self, name):
         item = next(filter(lambda i: i["name"] == name, items), None)
         return {"item": item}, 200 if item else 404
@@ -64,7 +59,7 @@ class Item(Resource):
             item.update(request_data)
         return item, 200
 
-    # overriding list with new list containing all elements apart from name
+    # override list with new list containing all elements apart from name
     def delete(self, name):
         global items
         items = list(filter(lambda x: x["name"] != name, items))
@@ -80,5 +75,5 @@ class ItemList(Resource):
 api.add_resource(Item, "/item/<string:name>")
 api.add_resource(ItemList, "/items")
 
-# debug=True will make errors easier to identify
+# set debug=True to make errors easier to identify
 app.run(port=500, debug=True)
