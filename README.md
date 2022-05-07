@@ -43,14 +43,17 @@ Sample response:
 
 ### 2. /item/\<name\>
 
-**URL Parameters** `GET` `POST` `PUT` `DELETE`
-- ```name=[str]``` (required) 
+- **URL Parameters** `GET` `POST` `PUT` `DELETE`
 
-**Request Headers** `POST` `PUT`
-- ```{"Content-Type": "application/json"}```
+    `name=[str]` (required) 
 
-**Data (json payload)** `POST` `PUT`
-- ```{"price": <price>[float]}```
+- **Request Headers** `POST` `PUT`
+
+    `{"Content-Type": "application/json"}`
+
+- **Data (json payload)** `POST` `PUT`
+
+    `{"price": <price>[float]}`
  
 **Available methods**
 
