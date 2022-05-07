@@ -4,7 +4,7 @@ Current project - development of RESTful APIs with Flask, ultimately using a SQL
 
 ## Description
 
-This intention of this project is to expand my knowledge of RESTful API development using Flask. The endpoints provide the ability for users to retrieve and modify a database of household items for sale. Each item has a `name` and a `price`. Initially, the database is an in-memory python list (which is lost everytime the program restarts), but will develop to become a SQLite database, through the use of the SQLAlchemy toolkit. 
+The intention of this project is to expand my knowledge of RESTful API development using Flask. The endpoints provide the ability for users to retrieve and modify a database of household items for sale. Each item has a `name` and a `price`. Initially, the database is an in-memory python list (which is lost everytime the program restarts), but will develop to become a SQLite database, through the use of the SQLAlchemy toolkit. 
 
 The current code, which uses an in-memory database can be found [here](https://github.com/mhoward91/flask-rest-api/tree/master/in-memory). All methods are comprehensively tested using [Postman](https://www.postman.com/). 
 
@@ -12,18 +12,18 @@ The current code, which uses an in-memory database can be found [here](https://g
 - Advanced request parsing
 - Authentication
 - Use of SQLlite database instead of in-memory list
-- Deployemnt to Heroku
+- Deployment to Heroku
 - Additional security & token refreshing
 
 ## Endpoints
 
-### /items
+### 1. /items
 
 **Available methods**
 
 | Method   | Description                              |
 | -------- | ---------------------------------------- |
-| `GET`    | Returns the full items list as `json` data, displaying names and prices of all household items|
+| `GET`    | Returns the full items list as `json` data, displaying the names and prices of each item |
 
 Sample response:
 ```
@@ -41,7 +41,7 @@ Sample response:
 }
 ```
 
-### /item/\<name\>
+### 2. /item/\<name\>
 
 **URL Parameters** `GET` `POST` `PUT` `DELETE`
 - ```name=[str]``` (required) 
@@ -60,20 +60,6 @@ Sample response:
 | `POST`    | Adds an item with name=\<name\> to the items list, with a price defined in the json payload |
 | `PUT`    | Adds an item with name=\<name\>to the items list if not present, otherwise updates the item's price with the price defined in the json payload |
 | `DELETE`    | Deletes the item with name=\<name\> from the items list |
-
-### Sample call (Python) 
-
-`post`
-
-In order to call the API endpoint from a python program, install the `requests` module from PyPI:
-
-```python
-$ pip install requests
-```
-
-``` python
-import requests
-```
 
 ## License
 
