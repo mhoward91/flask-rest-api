@@ -11,7 +11,7 @@ The current code, which uses an in-memory database can be found [here](https://g
 ## Features planned/in development
 - Advanced request parsing
 - Authentication
-- Use of SQLlite database instead of in-memory list
+- Use of SQLite database instead of in-memory list
 - Deployment to Heroku
 - Additional security & token refreshing
 
