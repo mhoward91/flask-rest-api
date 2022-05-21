@@ -11,7 +11,7 @@ The current code, which uses an in-memory database can be found [here](https://g
 ## Features planned/in development
 - Advanced request parsing
 - Authentication
-- Use of SQLlite database instead of in-memory list
+- Use of SQLite database instead of in-memory list
 - Deployment to Heroku
 - Additional security & token refreshing
 
@@ -57,12 +57,12 @@ Sample response:
  
 **Available methods**
 
-| Method   | Description                              |
-| -------- | ---------------------------------------- |
-| `GET`    | Returns data on a single item, identified by the \<name\> parameter|
-| `POST`    | Adds an item with name=\<name\> to the items list, with a price defined in the json payload |
-| `PUT`    | Adds an item with name=\<name\>to the items list if not present, otherwise updates the item's price with the price defined in the json payload |
-| `DELETE`    | Deletes the item with name=\<name\> from the items list |
+| Method   | Description                              | HTTP Response
+| -------- | ---------------------------------------- | -------------|
+| `GET`    | Returns data on a single item, identified by the \<name\> parameter | `200 OK` if item found, otherwise `404 Not Found` if item doesn't exist |
+| `POST`    | Adds an item with name=\<name\> to the items list, with a price defined in the json payload | `201 Created` if item added, `400 Bad Request` if item already exists |
+| `PUT`    | Adds an item with name=\<name\>to the items list if not present, otherwise updates the item's price with the price defined in the json payload | `200 OK` if item added or updated |
+| `DELETE`    | Deletes the item with name=\<name\> from the items list | _In development_ |
 
 ## License
 
