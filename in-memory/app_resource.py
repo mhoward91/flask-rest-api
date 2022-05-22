@@ -12,7 +12,7 @@ from flask import Flask, request # type: ignore
 from flask_restful import Resource, Api, reqparse # type: ignore
 from flask_jwt import JWT, jwt_required # type: ignore
 
-from security import authenticate, identity
+from sec import authenticate, identity
 
 app = Flask(__name__)
 app.secret_key = "matt"  # hide in a production environment

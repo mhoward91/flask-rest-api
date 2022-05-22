@@ -6,7 +6,7 @@
 # which uses the jwt token to get the user ID, and subsequently the correct user 
 
 import hmac # safer way of comparing strings
-from user import User
+from basic_user import User
 
 # create mapping from users database to avoid repeated iterations through the users list
 
