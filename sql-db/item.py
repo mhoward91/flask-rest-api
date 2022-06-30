@@ -102,7 +102,7 @@ class Item(Resource):
         connection.commit()
         connection.close()
         
-        return {"message": "Item deleted"}
+        return {"message": "Item deleted"}, 200
 
 
 class ItemList(Resource):
