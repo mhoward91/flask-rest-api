@@ -11,8 +11,8 @@ Authentication features are handled with Flask-JWT, with only registered and aut
 ## API extension project
 The [flask-sqlalchemy](https://github.com/mhoward91/flask-sqlalchemy) project builds on the capabilities of this API by incorporating the following:
 - A stores table in the database schema, allowing household items to be allocated to a specific store
-- The use of SQLAlchemy to more efficiently create db tables, queries, and individual objects from each row of data 
-- Deployment with Heroku
+- The use of SQLAlchemy as an ORM, to more efficiently create db tables, queries, and individual objects from each row of data 
+- Deployment with Heroku & use of a PostgreSQL database
 - Token refreshing and additional Flask-JWT-Extended features
 
 ## Endpoints
